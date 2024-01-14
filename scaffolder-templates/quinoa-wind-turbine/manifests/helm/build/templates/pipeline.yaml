@@ -91,6 +91,8 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   name: {{ .Values.app.name }}-pipeline-frist-run
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"  
   finalizers:
     - chains.tekton.dev/pipelinerun
   labels:
@@ -101,12 +103,11 @@ metadata:
 spec:
   params:
     - name: source-repo
-      value: 'https://github.com/granatengeorg-rhdh-workshop/race7-wind-turbine'
+      value: {{ .Values.git.repo }}
     - name: source-branch
       value: main
     - name: output-image
-      value: >-
-        image-registry.openshift-image-registry.svc:5000/race7/wind-turbine-app:latest
+      value: {{ include "image.url" . }}
   pipelineRef:
     name: {{ .Values.app.name }}-pipeline
   taskRunTemplate:
