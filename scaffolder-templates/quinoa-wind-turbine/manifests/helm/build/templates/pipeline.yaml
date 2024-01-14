@@ -48,11 +48,27 @@ spec:
       params:
         - name: IMAGE
           value: $(params.output-image)
+        - name: STORAGE_DRIVER
+          value: vfs
+        - name: DOCKERFILE
+          value: ./Dockerfile
+        - name: CONTEXT
+          value: .
+        - name: TLSVERIFY
+          value: 'false'
+        - name: FORMAT
+          value: oci
+        - name: BUILD_EXTRA_ARGS
+          value: ''
+        - name: PUSH_EXTRA_ARGS
+          value: ''
+        - name: SKIP_PUSH
+          value: 'false'
       runAfter:
         - package
       taskRef:
-        kind: Task
-        name: kaniko-gateway
+        kind: ClusterTask
+        name: buildah
       workspaces:
         - name: source
           workspace: source-folder

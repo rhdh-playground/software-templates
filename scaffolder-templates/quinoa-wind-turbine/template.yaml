@@ -14,7 +14,6 @@ metadata:
 spec:
   owner: rhdeveloper-workshop-authors
   type: service
-
   parameters:
     - title: Provide information about the GitHub location
       required:
@@ -43,7 +42,7 @@ spec:
           title: Namespace
           type: string
           description: Namespace
-          default: rhdh
+          default: raceX
         owner:
           title: Owner
           type: string
