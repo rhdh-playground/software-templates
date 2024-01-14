@@ -90,9 +90,7 @@ spec:
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  name: {{ .Values.app.name }}-pipeline-frist-run
-  annotations:
-    argocd.argoproj.io/sync-wave: "10"  
+  name: {{ .Values.app.name }}-pipeline-frist-run  
   finalizers:
     - chains.tekton.dev/pipelinerun
   labels:
